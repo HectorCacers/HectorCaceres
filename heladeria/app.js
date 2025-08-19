@@ -23,22 +23,22 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // =========================
-// ENDPOINTS DE EJEMPLO
+// ENDPOINTS DE EJEMPLO "HOLA"
 // =========================
 
-// GET method route
-app.get('/', (req, res) => {
-  res.send('GET request to the homepage');
+// GET request
+app.get('/hola', (req, res) => {
+  res.send('¡Hola! Esto es un GET');
 });
 
-// POST method route
-app.post('/', (req, res) => {
-  res.send('POST request to the homepage');
+// POST request
+app.post('/hola', (req, res) => {
+  res.send('¡Hola! Esto es un POST');
 });
 
-// PUT method route
-app.put('/', (req, res) => {
-  res.send('PUT request to the homepage');
+// PUT request
+app.put('/hola', (req, res) => {
+  res.send('¡Hola! Esto es un PUT');
 });
 
 // catch 404 and forward to error handler
@@ -48,11 +48,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
