@@ -22,6 +22,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// =========================
+// ENDPOINTS DE EJEMPLO
+// =========================
+
+// GET method route
+app.get('/', (req, res) => {
+  res.send('GET request to the homepage');
+});
+
+// POST method route
+app.post('/', (req, res) => {
+  res.send('POST request to the homepage');
+});
+
+// PUT method route
+app.put('/', (req, res) => {
+  res.send('PUT request to the homepage');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
