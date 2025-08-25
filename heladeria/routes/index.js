@@ -1,9 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+var holaRouter = require('./hola');      
+var heladosRouter = require('./helados'); 
+
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: ' caceres' });
+  res.send('Bienvenido a la API principal 🚀');
 });
+
+
+//router.use('/hola', holaRouter);       
+router.use('/helados', heladosRouter);  
 
 module.exports = router;

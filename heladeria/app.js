@@ -1,14 +1,18 @@
+require('dotenv').config();
 var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index'); // aquí ya se incluyen las demás rutas
+var indexRouter = require('./routes/index'); 
+var productosRouter = require("./routes/productos");
 
-var app = express();
+var app = express();   // 👈 Mueve esto arriba, antes de usar app.use
+const connectDB = require("./config/database");
 
-// view engine setup (si usas vistas Jade/Pug, si no, se puede quitar)
+connectDB();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -18,10 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rutas principales
+// 👇 Aquí ya es seguro usarlo
+app.use("/api/productos", productosRouter);
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
+// catch 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
